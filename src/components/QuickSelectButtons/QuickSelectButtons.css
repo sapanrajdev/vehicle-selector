@@ -1,0 +1,26 @@
+.quick-selects p {
+  margin: 0 0 12px;
+}
+
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.preset-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8f1ff;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.preset-button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+}

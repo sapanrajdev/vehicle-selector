@@ -1,0 +1,15 @@
+.status-message {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-radius: 12px;
+}
+
+.status-message.success {
+  background: rgba(74, 199, 99, 0.14);
+  color: #c6f1d6;
+}
+
+.status-message.error {
+  background: rgba(255, 107, 107, 0.16);
+  color: #ffd6d6;
+}

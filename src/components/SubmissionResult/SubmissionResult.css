@@ -1,0 +1,26 @@
+.response-block {
+  margin-top: 26px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+}
+
+.response-block h2 {
+  margin-top: 0;
+}
+
+.result-field {
+  margin-bottom: 12px;
+}
+
+.logbook-preview pre {
+  margin: 12px 0 0;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
