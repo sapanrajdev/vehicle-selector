@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { VehicleController } from "../controllers/vehicleController";
 import { uploadSingle } from "../middleware/upload";
+import { asyncHandler } from "../middleware/asyncHandler";
 
 const router: Router = Router();
 
@@ -12,7 +13,7 @@ const router: Router = Router();
 router.post(
   "/submit",
   uploadSingle("logbook"),
-  VehicleController.submitVehicle,
+  asyncHandler(VehicleController.submitVehicle),
 );
 
 export default router;

@@ -6,7 +6,7 @@ import {
   VehicleSubmissionResponse,
   HealthCheckResponse,
 } from "../types";
-import { asyncHandler } from "../middleware/errorHandler";
+import { asyncHandler } from "../middleware/asyncHandler";
 
 export class VehicleController {
   /**

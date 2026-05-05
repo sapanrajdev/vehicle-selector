@@ -1,46 +1,45 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction } from "express";
+import multer from "multer";
 
 export class AppError extends Error {
-  public statusCode: number;
-  public isOperational: boolean;
+  statusCode: number;
 
-  constructor(
-    message: string,
-    statusCode: number = 500,
-    isOperational: boolean = true,
-  ) {
+  constructor(message: string, statusCode: number) {
     super(message);
     this.statusCode = statusCode;
-    this.isOperational = isOperational;
-    this.name = this.constructor.name;
-
-    Error.captureStackTrace(this, this.constructor);
+    Object.setPrototypeOf(this, AppError.prototype);
   }
 }
 
 export const errorHandler = (
-  err: Error | AppError,
+  err: unknown,
   _req: Request,
   res: Response,
-): void => {
-  let statusCode = 500;
-  let message = "Internal Server Error";
+  _next: NextFunction,
+) => {
+  void _next;
 
+  console.error("[ErrorHandler]", err);
+
+  // Handle custom AppError
   if (err instanceof AppError) {
-    statusCode = err.statusCode;
-    message = err.message;
+    return res.status(err.statusCode).json({
+      success: false,
+      error: err.message,
+    });
   }
 
-  const response = {
+  // Handle multer internal errors (size, etc.)
+  if (err instanceof multer.MulterError) {
+    return res.status(400).json({
+      success: false,
+      error: err.message,
+    });
+  }
+
+  // Fallback
+  return res.status(500).json({
     success: false,
-    error: message,
-  };
-
-  res.status(statusCode).json(response);
-};
-
-export const asyncHandler = (fn: RequestHandler): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-  };
+    error: "Internal Server Error",
+  });
 };

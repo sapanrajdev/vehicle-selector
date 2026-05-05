@@ -1,9 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import {
-  errorHandler,
-  AppError,
-  asyncHandler,
-} from "../../src/middleware/errorHandler";
+import { errorHandler, AppError } from "../../src/middleware/errorHandler";
+import { asyncHandler } from "../../src/middleware/asyncHandler";
 
 describe("errorHandler", () => {
   let mockRequest: Partial<Request>;
@@ -21,17 +18,15 @@ describe("errorHandler", () => {
 
   describe("AppError", () => {
     it("should create AppError with default values", () => {
-      const error = new AppError("Test error");
+      const error = new AppError("Test error", 500);
       expect(error.message).toBe("Test error");
       expect(error.statusCode).toBe(500);
-      expect(error.isOperational).toBe(true);
     });
 
     it("should create AppError with custom values", () => {
-      const error = new AppError("Test error", 400, false);
+      const error = new AppError("Test error", 400);
       expect(error.message).toBe("Test error");
       expect(error.statusCode).toBe(400);
-      expect(error.isOperational).toBe(false);
     });
   });
 
@@ -39,7 +34,12 @@ describe("errorHandler", () => {
     it("should handle AppError", () => {
       const appError = new AppError("App error", 400);
 
-      errorHandler(appError, mockRequest as Request, mockResponse as Response);
+      errorHandler(
+        appError,
+        mockRequest as Request,
+        mockResponse as Response,
+        mockNext as NextFunction,
+      );
 
       expect(mockResponse.status).toHaveBeenCalledWith(400);
       expect(mockResponse.json).toHaveBeenCalledWith({
@@ -55,6 +55,7 @@ describe("errorHandler", () => {
         genericError,
         mockRequest as Request,
         mockResponse as Response,
+        mockNext as NextFunction,
       );
 
       expect(mockResponse.status).toHaveBeenCalledWith(500);
