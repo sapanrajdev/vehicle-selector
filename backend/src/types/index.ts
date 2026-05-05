@@ -1,12 +1,3 @@
-// Extend Express Request to include multer file
-declare global {
-  namespace Express {
-    interface Request {
-      file?: Express.Multer.File;
-    }
-  }
-}
-
 export interface VehicleSubmission {
   make: string;
   model: string;
@@ -24,9 +15,15 @@ export interface VehicleSubmissionResponse {
   id: string;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T> {
   success: boolean;
   data?: T;
   error?: string;
   message?: string;
+}
+
+export interface HealthCheckResponse {
+  timestamp: string;
+  version: string;
+  environment: string;
 }

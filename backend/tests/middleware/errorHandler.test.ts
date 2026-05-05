@@ -39,12 +39,7 @@ describe("errorHandler", () => {
     it("should handle AppError", () => {
       const appError = new AppError("App error", 400);
 
-      errorHandler(
-        appError,
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext,
-      );
+      errorHandler(appError, mockRequest as Request, mockResponse as Response);
 
       expect(mockResponse.status).toHaveBeenCalledWith(400);
       expect(mockResponse.json).toHaveBeenCalledWith({
@@ -60,7 +55,6 @@ describe("errorHandler", () => {
         genericError,
         mockRequest as Request,
         mockResponse as Response,
-        mockNext,
       );
 
       expect(mockResponse.status).toHaveBeenCalledWith(500);

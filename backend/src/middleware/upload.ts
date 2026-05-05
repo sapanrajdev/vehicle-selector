@@ -1,5 +1,5 @@
 import multer, { FileFilterCallback } from "multer";
-import { Request } from "express";
+import { Request, RequestHandler } from "express";
 import { AppError } from "./errorHandler";
 
 const storage = multer.memoryStorage();
@@ -24,5 +24,5 @@ export const upload = multer({
   },
 });
 
-export const uploadSingle = (fieldName: string): any =>
+export const uploadSingle = (fieldName: string): RequestHandler =>
   upload.single(fieldName);

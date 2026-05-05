@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 
 export class AppError extends Error {
   public statusCode: number;
@@ -22,7 +22,6 @@ export const errorHandler = (
   err: Error | AppError,
   _req: Request,
   res: Response,
-  _next: NextFunction,
 ): void => {
   let statusCode = 500;
   let message = "Internal Server Error";
@@ -40,7 +39,7 @@ export const errorHandler = (
   res.status(statusCode).json(response);
 };
 
-export const asyncHandler = (fn: Function) => {
+export const asyncHandler = (fn: RequestHandler): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };

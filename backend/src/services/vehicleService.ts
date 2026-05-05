@@ -17,26 +17,20 @@ export class VehicleService {
     vehicleData: VehicleSubmission,
     logbookFile: LogbookFile,
   ): Promise<VehicleSubmissionResponse> {
-    try {
-      // Validate vehicle data
-      validateVehicleData(vehicleData);
+    // Validate vehicle data
+    validateVehicleData(vehicleData);
 
-      // Process logbook file
-      const logbookContent = processLogbookFile(logbookFile);
+    // Process logbook file
+    const logbookContent = processLogbookFile(logbookFile);
 
-      // Generate unique ID (in a real app, this would come from database)
-      const id = generateSubmissionId();
+    // Generate unique ID
+    const id = generateSubmissionId();
 
-      const response: VehicleSubmissionResponse = {
-        vehicle: vehicleData,
-        logbook: logbookContent,
-        timestamp: new Date(),
-        id,
-      };
-
-      return response;
-    } catch (error) {
-      throw error;
-    }
+    return {
+      vehicle: vehicleData,
+      logbook: logbookContent,
+      timestamp: new Date(),
+      id,
+    };
   }
 }

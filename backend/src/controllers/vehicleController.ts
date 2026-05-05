@@ -4,6 +4,7 @@ import {
   VehicleSubmission,
   ApiResponse,
   VehicleSubmissionResponse,
+  HealthCheckResponse,
 } from "../types";
 import { asyncHandler } from "../middleware/errorHandler";
 
@@ -13,14 +14,21 @@ export class VehicleController {
    */
   static submitVehicle = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
+      console.log(
+        "[vehicleController.submitVehicle] Received request with body:",
+        req.body,
+      );
       const { make, model, badge } = req.body as VehicleSubmission;
       const logbookFile = req.file;
 
       if (!logbookFile) {
-        const response: ApiResponse = {
+        const response: ApiResponse<unknown> = {
           success: false,
           error: "Logbook file is required",
         };
+        console.error(
+          "[vehicleController.submitVehicle] No logbook file provided",
+        );
         res.status(400).json(response);
         return;
       }
@@ -36,7 +44,10 @@ export class VehicleController {
         data: result,
         message: "Vehicle submission processed successfully",
       };
-
+      console.log(
+        "[vehicleController.submitVehicle] Successfully processed submission:",
+        result,
+      );
       res.status(200).json(response);
     },
   );
@@ -45,7 +56,7 @@ export class VehicleController {
    * Health check endpoint
    */
   static healthCheck = (_req: Request, res: Response): void => {
-    const response: ApiResponse = {
+    const response: ApiResponse<HealthCheckResponse> = {
       success: true,
       message: "Vehicle Selection API is healthy",
       data: {
