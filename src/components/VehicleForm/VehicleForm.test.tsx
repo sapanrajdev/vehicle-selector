@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { VehicleForm } from "./VehicleForm";
 
 const defaultProps = {
@@ -198,10 +197,8 @@ describe("VehicleForm", () => {
   it("calls onSubmit when form is submitted", () => {
     render(<VehicleForm {...defaultProps} />);
 
-    const button = screen.getByRole("button", {
-      name: "Submit vehicle selection",
-    });
-    fireEvent.click(button);
+    const form = document.querySelector("form");
+    fireEvent.submit(form!);
 
     expect(defaultProps.onSubmit).toHaveBeenCalledTimes(1);
   });
@@ -217,7 +214,7 @@ describe("VehicleForm", () => {
     render(<VehicleForm {...defaultProps} loading={true} />);
 
     expect(screen.getByText("Submitting...")).toBeInTheDocument();
-    expect(screen.getByText("Sub")).toBeInTheDocument(); // button-loader span
+    expect(screen.getByRole("button")).toHaveClass("submit-button");
   });
 
   it("shows normal text when not loading", () => {

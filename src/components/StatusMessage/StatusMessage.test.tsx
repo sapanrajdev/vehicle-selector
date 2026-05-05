@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { StatusMessage } from "./StatusMessage";
 import { StatusMessage as StatusMessageType } from "../../types";

@@ -1,7 +1,7 @@
-import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import VehicleSelectionForm from "./VehicleSelectionForm";
 import { submitVehicleForm } from "../../services/apiService";
+import { SubmissionData } from "../../types";
 
 // Mock the API service
 jest.mock("../../services/apiService");
@@ -142,15 +142,18 @@ describe("VehicleSelectionForm", () => {
       file: file,
       validateForm: jest.fn().mockReturnValue(null),
     });
-    const mockResponse = {
+    const mockResponse: SubmissionData = {
       data: {
         vehicle: { make: "tesla", model: "Model 3", badge: "Performance" },
         logbook: "content",
       },
       success: true,
-      message: undefined,
+      message: "success",
     };
     mockSubmitVehicleForm.mockResolvedValue(mockResponse);
+
+    const scrollIntoViewMock = jest.fn();
+    HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 
     render(<VehicleSelectionForm />);
 
@@ -167,9 +170,9 @@ describe("VehicleSelectionForm", () => {
         file,
       );
     });
-    expect(
-      screen.getByText("Vehicle submitted successfully!"),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("success")).toBeInTheDocument();
+    });
     expect(screen.getByText("Submission result")).toBeInTheDocument();
   });
 
@@ -207,7 +210,7 @@ describe("VehicleSelectionForm", () => {
       file: file,
       validateForm: jest.fn().mockReturnValue(null),
     });
-    const mockResponse = {
+    const mockResponse: SubmissionData = {
       data: {
         vehicle: { make: "tesla", model: "Model 3", badge: "Performance" },
         logbook: "content",
@@ -241,7 +244,7 @@ describe("VehicleSelectionForm", () => {
       ...mockVehicleForm,
       make: "tesla",
     });
-    const { rerender } = render(<VehicleSelectionForm />);
+    render(<VehicleSelectionForm />);
 
     // Simulate status and response being set
     // Since it's internal state, hard to test directly, but we can check that updateMake clears them

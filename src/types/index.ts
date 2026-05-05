@@ -13,7 +13,7 @@ export interface QuickPreset {
 
 export interface SubmissionData {
   data: SubmissionResponse;
-  success: string;
+  success: boolean;
   message: string;
 }
 

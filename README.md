@@ -67,6 +67,20 @@ The frontend and backend must be running at the same time. The frontend sends th
 5. To test the service:
    - `npm test`
 
+## Running with Docker
+
+This project can be run in containers using Docker Compose. It builds the frontend app into a static site served by Nginx and starts the backend service in a separate container.
+
+1. Build and start both services:
+   - `npm run docker:build`
+   - `npm run docker:up`
+2. Open the app in your browser:
+   - `http://localhost:8080`
+3. Stop the containers when finished:
+   - `npm run docker:down`
+
+> The frontend container proxies `/api` requests to the backend service at `http://backend:5000`.
+
 ## Notes
 
 - If the backend is unavailable, the UI should display an error message on submit.

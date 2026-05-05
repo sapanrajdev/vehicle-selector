@@ -1,13 +1,16 @@
-import React from 'react';
-import { QuickPreset } from '../../types';
-import './QuickSelectButtons.css';
+import React from "react";
+import { QuickPreset } from "../../types";
+import "./QuickSelectButtons.css";
 
 interface QuickSelectButtonsProps {
   presets: QuickPreset[];
   onPresetSelect: (preset: QuickPreset) => void;
 }
 
-export const QuickSelectButtons: React.FC<QuickSelectButtonsProps> = ({ presets, onPresetSelect }) => {
+export const QuickSelectButtons: React.FC<QuickSelectButtonsProps> = ({
+  presets,
+  onPresetSelect,
+}) => {
   return (
     <section className="quick-selects">
       <p>Select a common vehicle quickly:</p>
