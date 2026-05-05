@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint --resolve-plugins-relative-to ./node_modules/react-scripts --config ./node_modules/react-scripts/config/eslint.js src --ext .ts,.tsx",
+    "lint": "eslint src/**/*.ts",
     "format:check": "npx prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "docker:build": "docker compose build",
     "docker:up": "docker compose up --detach",
