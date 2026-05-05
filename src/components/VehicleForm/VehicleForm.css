@@ -11,7 +11,7 @@
 }
 
 .vehicle-form select,
-.vehicle-form input[type='file'] {
+.vehicle-form input[type="file"] {
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
@@ -30,7 +30,9 @@
   color: #0f1a2b;
   font-weight: 700;
   margin-top: 8px;
-  transition: transform 150ms ease, background-color 150ms ease;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;

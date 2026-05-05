@@ -17,7 +17,9 @@
   font-size: 0.95rem;
   background: rgba(255, 255, 255, 0.08);
   color: #e8f1ff;
-  transition: transform 150ms ease, background-color 150ms ease;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease;
 }
 
 .preset-button:hover {
