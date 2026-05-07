@@ -24,8 +24,7 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-.vehicle-form-control:hover
-  .MuiOutlinedInput-notchedOutline {
+.vehicle-form-control:hover .MuiOutlinedInput-notchedOutline {
   border-color: #49a6ff;
 }
 
@@ -36,8 +35,7 @@
   border-width: 2px;
 }
 
-.vehicle-form-control
-  .MuiOutlinedInput-root.Mui-disabled {
+.vehicle-form-control .MuiOutlinedInput-root.Mui-disabled {
   color: rgba(255, 255, 255, 0.45);
 }
 
@@ -53,13 +51,11 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.vehicle-form-control
-  .MuiInputLabel-root.Mui-focused {
+.vehicle-form-control .MuiInputLabel-root.Mui-focused {
   color: #49a6ff;
 }
 
-.vehicle-form-control
-  .MuiInputLabel-root.Mui-disabled {
+.vehicle-form-control .MuiInputLabel-root.Mui-disabled {
   color: rgba(255, 255, 255, 0.35);
 }
 
@@ -80,21 +76,11 @@
 }
 
 .vehicle-menu-paper .MuiMenuItem-root:hover {
-  background-color: rgba(
-    73,
-    166,
-    255,
-    0.15
-  ) !important;
+  background-color: rgba(73, 166, 255, 0.15) !important;
 }
 
 .vehicle-menu-paper .Mui-selected {
-  background-color: rgba(
-    73,
-    166,
-    255,
-    0.25
-  ) !important;
+  background-color: rgba(73, 166, 255, 0.25) !important;
 }
 
 /* =========================
@@ -109,12 +95,7 @@
 
 .vehicle-upload-button {
   color: #ffffff !important;
-  border-color: rgba(
-    255,
-    255,
-    255,
-    0.25
-  ) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
 
   padding-top: 12px !important;
   padding-bottom: 12px !important;
@@ -128,28 +109,13 @@
 
 .vehicle-upload-button:hover {
   border-color: #49a6ff !important;
-  background-color: rgba(
-    73,
-    166,
-    255,
-    0.08
-  ) !important;
+  background-color: rgba(73, 166, 255, 0.08) !important;
 }
 
 .vehicle-upload-button.Mui-disabled {
-  border-color: rgba(
-    255,
-    255,
-    255,
-    0.12
-  ) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
 
-  color: rgba(
-    255,
-    255,
-    255,
-    0.4
-  ) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* =========================
@@ -175,17 +141,7 @@
 }
 
 .vehicle-submit-button.Mui-disabled {
-  background-color: rgba(
-    73,
-    166,
-    255,
-    0.45
-  ) !important;
+  background-color: rgba(73, 166, 255, 0.45) !important;
 
-  color: rgba(
-    15,
-    26,
-    43,
-    0.7
-  ) !important;
+  color: rgba(15, 26, 43, 0.7) !important;
 }
