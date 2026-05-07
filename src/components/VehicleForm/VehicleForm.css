@@ -1,64 +1,191 @@
 .vehicle-form {
-  display: grid;
-  gap: 16px;
-}
-
-.vehicle-form label {
-  display: grid;
-  gap: 8px;
-  text-align: left;
-  font-weight: 600;
-}
-
-.vehicle-form select,
-.vehicle-form input[type="file"] {
+  display: flex;
+  gap: 24px;
   width: 100%;
-  padding: 12px 14px;
+  flex-direction: column;
+}
+
+.vehicle-title {
+  color: #ffffff;
+  font-weight: 700 !important;
+}
+
+/* =========================
+   Form Controls
+========================= */
+
+.vehicle-form-control .MuiOutlinedInput-root {
+  color: #ffffff;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  color: #f8fbff;
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
-.submit-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-size: 0.95rem;
-  background: #49a6ff;
-  color: #0f1a2b;
-  font-weight: 700;
-  margin-top: 8px;
-  transition:
-    transform 150ms ease,
-    background-color 150ms ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.vehicle-form-control .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.submit-button:hover {
-  transform: translateY(-1px);
+.vehicle-form-control:hover
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #49a6ff;
 }
 
-.submit-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.75;
+.vehicle-form-control
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #49a6ff;
+  border-width: 2px;
 }
 
-.button-loader {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(15, 26, 43, 0.25);
-  border-top-color: #0f1a2b;
-  border-radius: 50%;
-  animation: spin 0.75s linear infinite;
+.vehicle-form-control
+  .MuiOutlinedInput-root.Mui-disabled {
+  color: rgba(255, 255, 255, 0.45);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.vehicle-form-control
+  .MuiOutlinedInput-root.Mui-disabled
+  .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Label */
+
+.vehicle-form-control .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vehicle-form-control
+  .MuiInputLabel-root.Mui-focused {
+  color: #49a6ff;
+}
+
+.vehicle-form-control
+  .MuiInputLabel-root.Mui-disabled {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Dropdown icon */
+
+.vehicle-form-control .MuiSvgIcon-root {
+  color: #ffffff;
+}
+
+/* =========================
+   Dropdown Menu
+========================= */
+
+.vehicle-menu-paper {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid #2b3b54 !important;
+}
+
+.vehicle-menu-paper .MuiMenuItem-root:hover {
+  background-color: rgba(
+    73,
+    166,
+    255,
+    0.15
+  ) !important;
+}
+
+.vehicle-menu-paper .Mui-selected {
+  background-color: rgba(
+    73,
+    166,
+    255,
+    0.25
+  ) !important;
+}
+
+/* =========================
+   Upload
+========================= */
+
+.vehicle-upload-label {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px !important;
+  font-weight: 600 !important;
+}
+
+.vehicle-upload-button {
+  color: #ffffff !important;
+  border-color: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ) !important;
+
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+
+  justify-content: flex-start !important;
+
+  border-radius: 12px !important;
+
+  text-transform: none !important;
+}
+
+.vehicle-upload-button:hover {
+  border-color: #49a6ff !important;
+  background-color: rgba(
+    73,
+    166,
+    255,
+    0.08
+  ) !important;
+}
+
+.vehicle-upload-button.Mui-disabled {
+  border-color: rgba(
+    255,
+    255,
+    255,
+    0.12
+  ) !important;
+
+  color: rgba(
+    255,
+    255,
+    255,
+    0.4
+  ) !important;
+}
+
+/* =========================
+   Submit Button
+========================= */
+
+.vehicle-submit-button {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+
+  border-radius: 12px !important;
+
+  font-weight: 700 !important;
+
+  text-transform: none !important;
+
+  background-color: #49a6ff !important;
+  color: #0f1a2b !important;
+}
+
+.vehicle-submit-button:hover {
+  background-color: #3795ef !important;
+}
+
+.vehicle-submit-button.Mui-disabled {
+  background-color: rgba(
+    73,
+    166,
+    255,
+    0.45
+  ) !important;
+
+  color: rgba(
+    15,
+    26,
+    43,
+    0.7
+  ) !important;
 }

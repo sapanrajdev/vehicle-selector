@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["**/tests/**/*.test.ts", "**/tests/**/*.test.tsx"],
+  "moduleDirectories": ["node_modules", "src"],
+  "collectCoverageFrom": ["src/**/*.ts", "src/**/*.tsx"]
+}

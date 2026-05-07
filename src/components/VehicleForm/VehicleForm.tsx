@@ -1,4 +1,16 @@
 import React from "react";
+import {
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+  Button,
+} from "@mui/material";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+
 import "./VehicleForm.css";
 
 interface VehicleFormProps {
@@ -17,6 +29,14 @@ interface VehicleFormProps {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
+const menuProps = {
+  slotProps: {
+    paper: {
+      className: "vehicle-menu-paper",
+    },
+  },
+};
+
 export const VehicleForm: React.FC<VehicleFormProps> = ({
   loading,
   make,
@@ -32,74 +52,135 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
   onFileChange,
   onSubmit,
 }) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      onFileChange(file);
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} className="vehicle-form">
-      <label>
-        Make
-        <select value={make} onChange={(e) => onMakeChange(e.target.value)}>
-          <option value="">Choose make</option>
+    <form className="vehicle-form" onSubmit={onSubmit}>
+      <Typography variant="h5" className="vehicle-title">
+        Vehicle Selection
+      </Typography>
+
+      {/* Make */}
+      <FormControl fullWidth className="vehicle-form-control">
+        <InputLabel id="make-label">Make</InputLabel>
+
+        <Select
+          labelId="make-label"
+          value={make}
+          label="Make"
+          onChange={(e: SelectChangeEvent) => onMakeChange(e.target.value)}
+          className="vehicle-select"
+          MenuProps={menuProps}
+        >
+          <MenuItem value="">
+            <em>Choose make</em>
+          </MenuItem>
+
           {makeOptions.map((option) => (
-            <option key={option} value={option}>
+            <MenuItem key={option} value={option}>
               {option.charAt(0).toUpperCase() + option.slice(1)}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </label>
+        </Select>
+      </FormControl>
 
-      <label>
-        Model
-        <select
+      {/* Model */}
+      <FormControl fullWidth disabled={!make} className="vehicle-form-control">
+        <InputLabel id="model-label">Model</InputLabel>
+
+        <Select
+          labelId="model-label"
           value={model}
-          onChange={(e) => onModelChange(e.target.value)}
-          disabled={!make}
+          label="Model"
+          onChange={(e: SelectChangeEvent) => onModelChange(e.target.value)}
+          className="vehicle-select"
+          MenuProps={menuProps}
         >
-          <option value="">Choose model</option>
+          <MenuItem value="">
+            <em>Choose model</em>
+          </MenuItem>
+
           {modelOptions.map((option) => (
-            <option key={option} value={option}>
+            <MenuItem key={option} value={option}>
               {option}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </label>
+        </Select>
+      </FormControl>
 
-      <label>
-        Badge
-        <select
+      {/* Badge */}
+      <FormControl fullWidth disabled={!model} className="vehicle-form-control">
+        <InputLabel id="badge-label">Badge</InputLabel>
+
+        <Select
+          labelId="badge-label"
           value={badge}
-          onChange={(e) => onBadgeChange(e.target.value)}
-          disabled={!model}
+          label="Badge"
+          onChange={(e: SelectChangeEvent) => onBadgeChange(e.target.value)}
+          className="vehicle-select"
+          MenuProps={menuProps}
         >
-          <option value="">Choose badge</option>
+          <MenuItem value="">
+            <em>Choose badge</em>
+          </MenuItem>
+
           {badgeOptions.map((option) => (
-            <option key={option} value={option}>
+            <MenuItem key={option} value={option}>
               {option}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </label>
+        </Select>
+      </FormControl>
 
-      <label>
-        Logbook file
-        <input
+      {/* Upload */}
+      <div className="vehicle-upload-wrapper">
+        <Typography variant="subtitle2" className="vehicle-upload-label">
+          Logbook File
+        </Typography>
+
+        <Button
+          component="label"
+          variant="outlined"
+          startIcon={<UploadFileIcon />}
           disabled={!badge}
-          title={!badge ? "Please select a badge first" : undefined}
-          ref={fileInputRef}
-          type="file"
-          accept=".txt,text/plain"
-          onChange={(e) => onFileChange(e.target.files![0])}
-        />
-      </label>
+          fullWidth
+          className="vehicle-upload-button"
+        >
+          {fileInputRef.current?.files?.[0]?.name || "Upload TXT File"}
 
-      <button disabled={loading} type="submit" className="submit-button">
+          <input
+            hidden
+            ref={fileInputRef}
+            type="file"
+            accept=".txt,text/plain"
+            onChange={handleFileChange}
+          />
+        </Button>
+      </div>
+
+      {/* Submit */}
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={loading}
+        fullWidth
+        className="vehicle-submit-button"
+      >
         {loading ? (
           <>
-            <span className="button-loader" aria-hidden="true" />
+            <CircularProgress size={20} color="inherit" sx={{ mr: 1 }} />
             Submitting...
           </>
         ) : (
-          "Submit vehicle selection"
+          "Submit Vehicle Selection"
         )}
-      </button>
+      </Button>
     </form>
   );
 };
